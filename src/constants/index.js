@@ -16,7 +16,7 @@ export const myProjects = [
     tags: [
       {
         id: 1,
-        name: "C#",
+        name: "React",
         path: "/assets/logos/csharp.svg",
       },
       {
@@ -110,43 +110,7 @@ export const myProjects = [
       },
     ],
   },
-  {
-    id: 4,
-    title: "C++ Game Engine",
-    description:
-      "A lightweight C++ game engine designed for 2D and 3D game development.",
-    subDescription: [
-      "Built a powerful rendering engine using OpenGL and C++.",
-      "Developed a physics engine with collision detection and particle effects.",
-      "Implemented a scripting system for easy game customization.",
-      "Optimized performance with multi-threading and efficient memory management.",
-    ],
-    href: "",
-    logo: "",
-    image: "/assets/projects/game-engine.jpg",
-    tags: [
-      {
-        id: 1,
-        name: "C++",
-        path: "/assets/logos/cplusplus.svg",
-      },
-      {
-        id: 2,
-        name: "C#",
-        path: "/assets/logos/csharp.svg",
-      },
-      {
-        id: 3,
-        name: "Git",
-        path: "/assets/logos/git.svg",
-      },
-      {
-        id: 4,
-        name: "Microsoft",
-        path: "/assets/logos/microsoft.svg",
-      },
-    ],
-  },
+  
   {
     id: 5,
     title: "WordPress Custom Theme",
@@ -226,50 +190,42 @@ export const myProjects = [
 export const mySocials = [
   {
     name: "WhatsApp",
-    href: "",
+    href: "https://wa.me/436763492193",
     icon: "/assets/socials/whatsApp.svg",
   },
   {
     name: "Linkedin",
-    href: "https://www.linkedin.com/in/ali-sanati/",
+    href: "https://www.linkedin.com/in/rustam-qurbanov-6935361a1/",
     icon: "/assets/socials/linkedIn.svg",
   },
   {
     name: "Instagram",
-    href: "https://www.instagram.com/ali.sanatidev/reels/",
+    href: "https://www.instagram.com/russ.tafarii/?next=%2F",
     icon: "/assets/socials/instagram.svg",
   },
 ];
 
 export const experiences = [
   {
-    title: "Software Developer",
-    job: "Security & Defense Projects",
-    date: "2021-2023",
+    title: "Help Desk Specialist",
+    job: "Bank Republic Azerbaijan",
+    date: "08/2018 - 10/2019",
     contents: [
-      "Enhanced application security and developed new features, adhering to standards set by the Passive Defense Organization and National Cyberspace Center.",
-      "Designed and implemented intuitive map interfaces using MapsUI, enhancing user experience and enabling seamless interactive map integration.",
-      "Developed applications for industrial automation, leveraging C++ and the Fatek API for PLC communication.",
-      "Enhanced responsiveness and usability of applications using Windows Forms and WPF frameworks.",
-      "Executed XML to SVG conversions using X-DOM, ensuring dynamic and efficient data visualization.",
+     "Provided first-level technical support to bank staff, resolving hardware, software, and network issues through phone, email, and remote desktop tools. Assisted in user account administration using Active Directory, managing access rights and supporting onboarding and offboarding processes. Monitored and escalated critical system incidents, ensuring minimal downtime and compliance with internal SLAs. Supported banking applications and core systems, guiding users through operational tasks and resolving transaction-related issues. Documented recurring problems and solutions, contributing to an internal knowledge base to streamline future troubleshooting."
     ],
   },
   {
-    title: "Back-End Developer",
-    job: "Car Manufacture",
-    date: "2023-2024",
+    title: "Frontend Developer",
+    job: "International Bank of Azerbaijan",
+    date: "10/2019 - 07/2021",
     contents: [
-      "Engineered systems for large-scale data ingestion and analysis, ensuring efficient data processing and storage.",
-      "Developed back-end systems enabling vehicle-to-cloud communication for telemetry, diagnostics, and remote control:",
-      "✅ Implemented secure APIs, following ISO 26262 automotive safety standards.",
-      "✅ Ensured data privacy for customers and partners through industry-compliant protocols.",
-      "✅ Delivered remote features like over-the-air updates, real-time tracking, and remote start capabilities.",
+     "Participated in the IBA Tech Academy by the International Bank of Azerbaijan, focusing on frontend development using modern technologies.  Gained hands-on experience with React, HTML, and CSS, building responsive user interfaces and interactive components. Collaborated with peers on real-world projects, applying version control with Git and following best practices in clean code and component-based architecture. Strengthened problem-solving skills through coding challenges and continuous feedback from industry mentors. Upon completion of the academy, worked at the International Bank of Azerbaijan as a Junior Frontend Developer and Graphical Designer, contributing to the development and design of internal platforms and customer-facing applications."
     ],
   },
   {
-    title: "Freelance Developer",
-    job: "Self-Employed",
-    date: "2025-Present",
+    title: "Digitalization Engineer, Full Stack Developer",
+    job: "Infineon Technologies", 
+    date: "10/2023-Present",
     contents: [
       "Created a personal portfolio using Three.js, React, Vite, and WebAPI to showcase technical expertise.",
       "Continuously enhancing technical skills and expanding expertise in modern web development and back-end technologies.",

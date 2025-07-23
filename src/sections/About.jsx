@@ -12,10 +12,14 @@ const About = () => {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-6 md:auto-rows-[18rem] mt-12">
         {/* Grid 1 */}
         <div className="flex items-end grid-default-color grid-1">
-          <img
-            src="assets/me.jpeg"
-            className="absolute inset-0 w-full h-full object-cover object-center"
-          />
+          <video
+  src="assets/astronaut.mp4"
+  className="absolute inset-0 w-full h-full object-cover object-center"
+  autoPlay
+  loop
+  muted
+  playsInline
+/>
           <div className="z-10">
             <p className="headtext">Hi, I'm Rustam Gurbanov</p>
             <p className="subtext">
