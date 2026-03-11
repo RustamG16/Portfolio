@@ -1,26 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import React, { useEffect, useRef, useState } from "react";
-
-function MousePosition() {
-  const [mousePosition, setMousePosition] = useState({
-    x: 0,
-    y: 0,
-  });
-
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  return mousePosition;
-}
+import { useEffect, useRef } from "react";
 
 function hexToRgb(hex) {
   hex = hex.replace("#", "");
@@ -55,17 +34,33 @@ export const Particles = ({
   const canvasContainerRef = useRef(null);
   const context = useRef(null);
   const circles = useRef([]);
-  const mousePosition = MousePosition();
   const mouse = useRef({ x: 0, y: 0 });
   const canvasSize = useRef({ w: 0, h: 0 });
-  const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+  const dpr =
+    typeof window !== "undefined" ? Math.min(window.devicePixelRatio, 1.5) : 1;
   const rafID = useRef(null);
   const resizeTimeout = useRef(null);
+
+  const onMouseMove = (event) => {
+    if (!canvasRef.current) return;
+
+    const rect = canvasRef.current.getBoundingClientRect();
+    const { w, h } = canvasSize.current;
+    const x = event.clientX - rect.left - w / 2;
+    const y = event.clientY - rect.top - h / 2;
+    const inside = x < w / 2 && x > -w / 2 && y < h / 2 && y > -h / 2;
+
+    if (inside) {
+      mouse.current.x = x;
+      mouse.current.y = y;
+    }
+  };
 
   useEffect(() => {
     if (canvasRef.current) {
       context.current = canvasRef.current.getContext("2d");
     }
+
     initCanvas();
     animate();
 
@@ -73,27 +68,28 @@ export const Particles = ({
       if (resizeTimeout.current) {
         clearTimeout(resizeTimeout.current);
       }
+
       resizeTimeout.current = setTimeout(() => {
         initCanvas();
       }, 200);
     };
 
     window.addEventListener("resize", handleResize);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
 
     return () => {
       if (rafID.current != null) {
         window.cancelAnimationFrame(rafID.current);
       }
+
       if (resizeTimeout.current) {
         clearTimeout(resizeTimeout.current);
       }
+
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", onMouseMove);
     };
   }, [color]);
-
-  useEffect(() => {
-    onMouseMove();
-  }, [mousePosition.x, mousePosition.y]);
 
   useEffect(() => {
     initCanvas();
@@ -102,20 +98,6 @@ export const Particles = ({
   const initCanvas = () => {
     resizeCanvas();
     drawParticles();
-  };
-
-  const onMouseMove = () => {
-    if (canvasRef.current) {
-      const rect = canvasRef.current.getBoundingClientRect();
-      const { w, h } = canvasSize.current;
-      const x = mousePosition.x - rect.left - w / 2;
-      const y = mousePosition.y - rect.top - h / 2;
-      const inside = x < w / 2 && x > -w / 2 && y < h / 2 && y > -h / 2;
-      if (inside) {
-        mouse.current.x = x;
-        mouse.current.y = y;
-      }
-    }
   };
 
   const resizeCanvas = () => {
@@ -127,14 +109,7 @@ export const Particles = ({
       canvasRef.current.height = canvasSize.current.h * dpr;
       canvasRef.current.style.width = `${canvasSize.current.w}px`;
       canvasRef.current.style.height = `${canvasSize.current.h}px`;
-      context.current.scale(dpr, dpr);
-
-      // Clear existing particles and create new ones with exact quantity
-      circles.current = [];
-      for (let i = 0; i < quantity; i++) {
-        const circle = circleParams();
-        drawCircle(circle);
-      }
+      context.current.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
   };
 
@@ -194,8 +169,9 @@ export const Particles = ({
 
   const drawParticles = () => {
     clearContext();
-    const particleCount = quantity;
-    for (let i = 0; i < particleCount; i++) {
+    circles.current = [];
+
+    for (let i = 0; i < quantity; i++) {
       const circle = circleParams();
       drawCircle(circle);
     }
@@ -209,18 +185,20 @@ export const Particles = ({
 
   const animate = () => {
     clearContext();
+
     circles.current.forEach((circle, i) => {
-      // Handle the alpha value
       const edge = [
-        circle.x + circle.translateX - circle.size, // distance from left edge
-        canvasSize.current.w - circle.x - circle.translateX - circle.size, // distance from right edge
-        circle.y + circle.translateY - circle.size, // distance from top edge
-        canvasSize.current.h - circle.y - circle.translateY - circle.size, // distance from bottom edge
+        circle.x + circle.translateX - circle.size,
+        canvasSize.current.w - circle.x - circle.translateX - circle.size,
+        circle.y + circle.translateY - circle.size,
+        canvasSize.current.h - circle.y - circle.translateY - circle.size,
       ];
+
       const closestEdge = edge.reduce((a, b) => Math.min(a, b));
       const remapClosestEdge = parseFloat(
         remapValue(closestEdge, 0, 20, 0, 1).toFixed(2)
       );
+
       if (remapClosestEdge > 1) {
         circle.alpha += 0.02;
         if (circle.alpha > circle.targetAlpha) {
@@ -229,6 +207,7 @@ export const Particles = ({
       } else {
         circle.alpha = circle.targetAlpha * remapClosestEdge;
       }
+
       circle.x += circle.dx + vx;
       circle.y += circle.dy + vy;
       circle.translateX +=
@@ -240,20 +219,18 @@ export const Particles = ({
 
       drawCircle(circle, true);
 
-      // circle gets out of the canvas
       if (
         circle.x < -circle.size ||
         circle.x > canvasSize.current.w + circle.size ||
         circle.y < -circle.size ||
         circle.y > canvasSize.current.h + circle.size
       ) {
-        // remove the circle from the array
         circles.current.splice(i, 1);
-        // create a new circle
         const newCircle = circleParams();
         drawCircle(newCircle);
       }
     });
+
     rafID.current = window.requestAnimationFrame(animate);
   };
 

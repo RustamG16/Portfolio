@@ -38,6 +38,43 @@ export const myProjects = [
   },
   {
     id: 2,
+    title: "Edu4Students",
+    description:
+      "A student-focused educational platform providing resources, tools, and guidance for academic success.",
+    subDescription: [
+      "Built a comprehensive educational platform tailored for students with modern web technologies.",
+      "Designed an intuitive, responsive UI using React and Tailwind CSS for seamless navigation.",
+      "Implemented resource sections to help students access study materials and academic tools.",
+      "Focused on clean architecture and fast performance with Vite.js bundling.",
+    ],
+    href: "https://edu4students.netlify.app",
+    logo: "",
+    image: "/assets/edu4studs.png",
+    tags: [
+      {
+        id: 1,
+        name: "React",
+        path: "/assets/logos/react.svg",
+      },
+      {
+        id: 2,
+        name: "JavaScript",
+        path: "/assets/logos/javascript.svg",
+      },
+      {
+        id: 3,
+        name: "TailwindCSS",
+        path: "/assets/logos/tailwindcss.svg",
+      },
+      {
+        id: 4,
+        name: "Vite.js",
+        path: "/assets/logos/vitejs.svg",
+      },
+    ],
+  },
+  {
+    id: 3,
     title: "ArkEthos",
     description:
       "A psychology-based AI companion framework designed to provide personalized and empathetic interactions.",
@@ -74,7 +111,7 @@ export const myProjects = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: "Blazor Web App",
     description:
       "A modern, interactive web application built with Blazor WebAssembly and .NET Core.",
