@@ -112,42 +112,41 @@ export const myProjects = [
   },
   {
     id: 4,
-    title: "Blazor Web App",
+    title: "BAP Concept",
     description:
-      "A modern, interactive web application built with Blazor WebAssembly and .NET Core.",
+      "Healthcare software for rehabilitation institutions — built to simplify workflows for stationary and ambulatory rehabilitation facilities in Austria.",
     subDescription: [
-      "Developed a fully interactive Single Page Application (SPA) using Blazor WebAssembly.",
-      "Implemented API interactions using .NET Core for a robust backend.",
-      "Designed responsive UI components with Tailwind CSS for an enhanced UX.",
-      "Integrated SQLite for efficient client-side database storage.",
+      "Landing page and product showcase for BAP GesmbH's rehabilitation software solutions.",
+      "Showcases bapTherapie (therapy planning) and bapHotel products with HL7 integration.",
+      "Designed with modern, responsive UI highlighting 45+ years of healthcare software expertise.",
+      "Built for complex rehabilitation workflows: scheduling, billing, compliance, and system integration.",
     ],
-    href: "",
+    href: "https://bapconcept.netlify.app/",
     logo: "",
-    image: "/assets/projects/blazor-app.jpg",
+    image: "/assets/projects/bap-concept.png",
     tags: [
       {
         id: 1,
-        name: "Blazor",
-        path: "/assets/logos/blazor.svg",
+        name: "React",
+        path: "/assets/logos/react.svg",
       },
       {
         id: 2,
-        name: ".NET Core",
-        path: "/assets/logos/dotnetcore.svg",
+        name: "JavaScript",
+        path: "/assets/logos/javascript.svg",
       },
       {
         id: 3,
-        name: "SQLite",
-        path: "/assets/logos/sqlite.svg",
-      },
-      {
-        id: 4,
         name: "TailwindCSS",
         path: "/assets/logos/tailwindcss.svg",
       },
+      {
+        id: 4,
+        name: "Vite.js",
+        path: "/assets/logos/vitejs.svg",
+      },
     ],
   },
-  
   {
     id: 5,
     title: "WordPress Custom Theme",
